@@ -382,6 +382,7 @@ button:focus {
   width: 40%;
   transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
 }
+
 .btn-link:hover {
   color: inherit;
   text-decoration: none;
@@ -394,6 +395,9 @@ button:focus {
   float: right;
 }
 
+.light-theme .btn-link::after {
+    background: #1b1b1b;
+}
 @keyframes anim-ripple {
   0% {
     opacity: 0;
@@ -566,8 +570,6 @@ h1, h2, h3, h4, h5, h6 {
 .works-filter-wrap {
   margin-top: -18px;
   margin-bottom: 48px;
-}
-.works-filter {
 }
 @media only screen and (max-width: 580px) {
   .works-filter-wrap {
@@ -934,6 +936,109 @@ img {
   position: absolute;
   top: 5px;
   width: 8px;
+}
+.language-toggle {
+  align-items: center;
+  background: none;
+  border: 1px solid #ffffff;
+  border-radius: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Poppins", sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  height: 39px;
+  justify-content: space-between;
+  letter-spacing: 0;
+  overflow: hidden;
+  padding: 0;
+  text-transform: uppercase;
+  width: 83px;
+  position: relative;
+}
+.language-toggle::before {
+  background: #ffffff;
+  border-radius: 34px;
+  content: '';
+  height: 33px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  transform: translateX(0);
+  transition: transform .3s ease;
+  width: 38px;
+  z-index: 0;
+}
+.language-toggle.is-vietnamese::before {
+  transform: translateX(100%);
+}
+.language-toggle__option {
+  align-items: center;
+  color: #ffffff;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  position: relative;
+  transition: color .3s ease;
+  width: 50%;
+  z-index: 1;
+}
+.language-toggle:not(.is-vietnamese) .language-toggle__option_en,
+.language-toggle.is-vietnamese .language-toggle__option_vi {
+  color: #1b1b1b;
+}
+.light-theme .language-toggle {
+    border: 1px solid #1b1b1b;
+}
+
+.light-theme .language-toggle__option {
+    color: #1b1b1b;
+}
+
+.light-theme .language-toggle:not(.is-vietnamese) .language-toggle__option_en, .light-theme .language-toggle.is-vietnamese .language-toggle__option_vi {
+    color: #fff;
+}
+
+.light-theme .language-toggle::before {
+    background: #1b1b1b;
+}
+
+.theme-toggle {
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Poppins", sans-serif;
+  font-size: .68rem;
+  font-weight: 600;
+  gap: 8px;
+  letter-spacing: .12rem;
+  padding: 8px 13px;
+  position: absolute;
+  right: 110px;
+  top: 27px;
+  text-transform: uppercase;
+  transition: all .3s ease;
+}
+.theme-toggle-menu {
+  position: relative;
+  right: auto;
+  top: auto;
+}
+.theme-toggle:hover {
+  border-color: #5328fe;
+  color: #5328fe;
+}
+.theme-toggle__icon {
+  font-size: .95rem;
+  line-height: 1;
+}
+.theme-toggle__icon_moon {
+  display: none;
 }
 .brand-name {
   color: #fff;
@@ -2034,6 +2139,9 @@ img {
   white-space: nowrap;
   z-index: -1;
 }
+.light-theme .text-decoration {
+    color: rgb(0 0 0 / 3%);
+}
 .text-decoration_bottom {
   top: auto;
   bottom: 0;
@@ -2498,6 +2606,9 @@ img {
   width: 180px;
   z-index: -1;
 }
+.light-theme .client-carousel-item .item__block-author::after {
+  background-color: #f8f8f8;
+}
 @media only screen and (max-width: 991px) {
   .client-carousel-item .item__block-author {
     height: 360px;
@@ -2521,6 +2632,14 @@ img {
   overflow: hidden;
   position: relative;
   width: 228px;
+}
+
+.light-theme .client-carousel-item .item__block-author {
+    background: #fff;
+}
+
+.light-theme .client-carousel-item .item__block-image {
+    background: #fff;
 }
 .client-carousel-item .item__block-image img {
   max-width: 100%;
@@ -2829,6 +2948,9 @@ img {
 .swiper-control .swiper-button-next:hover {
   opacity: .5;
 }
+.light-theme .swiper-control .swiper-button-prev::after, .light-theme .swiper-control .swiper-button-next::after {
+    background: #1b1b1b;
+}
 @media only screen and (max-width: 580px) {
   .swiper-control .swiper-button-prev::after,
   .swiper-control .swiper-button-next::after {
@@ -2977,7 +3099,9 @@ img {
   font-size: 1.4rem;
   letter-spacing: .2rem;
 }
-
+.light-theme .pricing-grid .swiper-wrapper .swiper-slide h4, .light-theme .pricing-grid .swiper-wrapper .swiper-slide {
+    color: #fff;
+}
 /* -----------------------------------------------------------------
     - Brands logos
 ----------------------------------------------------------------- */
@@ -3056,7 +3180,10 @@ img {
   width: 76px;
   z-index: 2;
 }
-
+.light-theme .subscribe-form__inner .btn-subscribe {
+    color: #1b1b1b;
+    border-left-color: #1b1b1b;
+}
 /* -----------------------------------------------------------------
     - Section History
 ----------------------------------------------------------------- */
@@ -4333,7 +4460,7 @@ img {
     margin-bottom: 14px;
   }
 }
-.footer::before {
+/* .footer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -4341,7 +4468,7 @@ img {
   background-color: #fff;
   height: 1px;
   width: 110px;
-}
+} */
 .footer__contacts {
   line-height: 2;
 }
@@ -4682,6 +4809,130 @@ img {
     transform: scaleY(0);
     transform-origin: 50% 100% 0px;
   }
+}
+
+/* Light theme */
+.light-theme body {
+  background-color: #f3f1ed;
+  background-image: url(../images/line-maker.svg);
+  color: #1b1b1b;
+}
+.light-theme .navbar {
+  background-color: transparent;
+  color: #1b1b1b;
+}
+.light-theme .navbar.affix,
+.light-theme .navbar::before {
+  background-color: rgba(243, 241, 237, .94);
+}
+.light-theme .brand-name,
+.light-theme .title__h1,
+.light-theme .title__h2,
+.light-theme .title__h3,
+.light-theme .title__h4,
+.light-theme .title__h5,
+.light-theme .title__h6,
+.light-theme .title,
+.light-theme .section__subtitle,
+.light-theme .block-quote,
+.light-theme .footer,
+.light-theme .theme-toggle,
+.light-theme .hamburger__text,
+.light-theme .link_decoration,
+.light-theme .dl-menu__wrap ul li a {
+  color: #1b1b1b;
+}
+.light-theme .brand-tagline,
+.light-theme .loading-tagline {
+  color: rgba(27, 27, 27, .58);
+}
+.light-theme .theme-toggle {
+  border-color: rgba(27, 27, 27, .35);
+}
+.light-theme .theme-toggle__icon_sun {
+  display: none;
+}
+.light-theme .theme-toggle__icon_moon {
+  display: inline-block;
+}
+.light-theme .hamburger {
+  background-color: #1b1b1b;
+  box-shadow: 0 0 0 0px #1b1b1b;
+}
+.light-theme .hamburger:hover {
+  box-shadow: 0 0 0 3px #1b1b1b;
+}
+.light-theme .hamburger__line {
+  background-color: #f3f1ed;
+}
+.light-theme .hero::before {
+  background: rgba(243, 241, 237, .66);
+}
+.light-theme .hero {
+  color: #1b1b1b;
+}
+.light-theme .hero__title_line::before,
+.light-theme .title_horizontal-line::before,
+.light-theme .title_vertical-line-top::before,
+.light-theme .title_vertical-line-bottom::before {
+  background-color: #1b1b1b;
+}
+.light-theme .hero .next__arrow::after {
+  border-top-color: #1b1b1b;
+}
+.light-theme .section-counters,
+.light-theme .section-newsletter,
+.light-theme .footer {
+  color: #1b1b1b;
+}
+.light-theme input[type='text'],
+.light-theme input[type='email'],
+.light-theme input[type='password'],
+.light-theme textarea,
+.light-theme textarea.form-control {
+  background-color: #f3f1ed;
+  border-color: #1b1b1b;
+  color: #1b1b1b;
+}
+.light-theme .form-control::placeholder {
+  color: #1b1b1b;
+}
+.light-theme .popup,
+.light-theme .popup.popup__menu,
+.light-theme .loading {
+  background-color: #f3f1ed;
+  color: #1b1b1b;
+}
+.light-theme .popup.popup__menu {
+  background-image: url(../images/line-maker.svg);
+}
+.light-theme .loading::before {
+  background: #e6e2dc;
+}
+.light-theme .loading::after {
+  background: #ebe8e2;
+}
+.light-theme .loading-wrap .logotype {
+  color: #1b1b1b;
+}
+.light-theme .filter-categories__item a,
+.light-theme .filter__link,
+.light-theme .select .placeholder,
+.light-theme .btn-link,
+.light-theme .btn {
+  color: #1b1b1b;
+}
+.light-theme .filter-categories__item,
+.light-theme .filter__link:hover,
+.light-theme .select .placeholder,
+.light-theme .btn-link,
+.light-theme .btn:hover {
+  color: #fff;
+}
+.light-theme .select,
+.light-theme .select ul {
+  background-color: #f3f1ed;
+  border-color: #1b1b1b;
 }
 @media screen and (max-width: 580px) {
   .skrollable {

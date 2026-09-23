@@ -1,12 +1,92 @@
-/*
- * Author: ArtStyles Brands (ArtTemplate / ArtIcons)
- * URL: http://themeforest.net/user/artstyles
- * Template Name: Oliver
- * Version: 1.0.7
-*/
-
 "use strict";
+
+(function () {
+    var savedTheme = window.localStorage.getItem('kool-theme');
+    if (savedTheme === 'light') document.documentElement.classList.add('light-theme');
+}());
+
+var translations = {
+    en: {
+        'common.next': 'NEXT',
+        'common.prev': 'PREV',
+        'newsletter.title': 'Sign up for our newsletter to receive special offers.',
+        'newsletter.placeholder': 'Enter your email address',
+        'footer.office': 'Office',
+        'footer.contact': 'Get in touch',
+        'footer.social': 'Social',
+        'footer.connect': 'Connect with me on',
+        'menu.home': 'Home',
+        'menu.about': 'About Me',
+        'menu.works': 'Works',
+        'menu.blog': 'Blog',
+        'menu.contact': 'Contact'
+    },
+    vi: {
+        'common.next': 'TIẾP',
+        'common.prev': 'LÙI',
+        'newsletter.title': 'Đăng ký nhận thông tin và ưu đãi đặc biệt.',
+        'newsletter.placeholder': 'Nhập địa chỉ email của bạn',
+        'footer.office': 'Văn phòng',
+        'footer.contact': 'Liên hệ',
+        'footer.social': 'Mạng xã hội',
+        'footer.connect': 'Kết nối với tôi qua',
+        'menu.home': 'Trang chủ',
+        'menu.about': 'Về tôi',
+        'menu.works': 'Tác phẩm',
+        'menu.blog': 'Blog',
+        'menu.contact': 'Liên hệ'
+    }
+};
+
+function applyLanguage(language) {
+    var dictionary = Object.assign({}, translations[language], window.pageTranslations && window.pageTranslations[language]);
+    document.documentElement.lang = language === 'vi' ? 'vi' : 'en';
+    $('[data-i18n]').each(function () {
+        var key = $(this).attr('data-i18n');
+        if (dictionary[key]) $(this).html(dictionary[key]);
+    });
+    $('[data-i18n-placeholder]').each(function () {
+        var key = $(this).attr('data-i18n-placeholder');
+        if (dictionary[key]) $(this).attr('placeholder', dictionary[key]);
+    });
+    $('#language-toggle').toggleClass('is-vietnamese', language === 'vi');
+    $('#language-toggle').attr('aria-pressed', language === 'vi' ? 'true' : 'false');
+    $('#language-toggle').attr('aria-label', language === 'vi' ? 'Switch to English' : 'Chuyển sang tiếng Việt');
+    window.localStorage.setItem('kool-language', language);
+}
+
 $(document).ready(function() {
+
+	var currentLanguage = window.localStorage.getItem('kool-language') || 'en';
+	applyLanguage(currentLanguage);
+	$('#language-toggle').on('click', function() {
+		currentLanguage = currentLanguage === 'en' ? 'vi' : 'en';
+		applyLanguage(currentLanguage);
+	});
+
+    /*-----------------------------------------------------------------
+      Theme switcher
+    -------------------------------------------------------------------*/
+
+    var $themeToggle = $('.theme-toggle');
+
+    function updateThemeToggle(isLight) {
+        $themeToggle.attr('aria-pressed', isLight ? 'true' : 'false');
+        $themeToggle.attr('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+        $themeToggle.find('.theme-toggle__label').text(isLight ? 'Dark Mode' : 'Light Mode');
+		$themeToggle.find('.theme-toggle__icon_sun').toggle(!isLight);
+		$themeToggle.find('.theme-toggle__icon_moon').toggle(isLight);
+    }
+
+    var isLightTheme = document.documentElement.classList.contains('light-theme');
+    updateThemeToggle(isLightTheme);
+
+    $themeToggle.on('click', function() {
+        isLightTheme = !document.documentElement.classList.contains('light-theme');
+        document.documentElement.classList.toggle('light-theme', isLightTheme);
+        window.localStorage.setItem('kool-theme', isLightTheme ? 'light' : 'dark');
+        updateThemeToggle(isLightTheme);
+    });
 
 	/*-----------------------------------------------------------------
 	  Detect device mobile
